@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use warnings;
 use strict;
@@ -23,4 +23,3 @@ croak("Must specify XML meta file") unless(defined($metafile));
 my $couchdocs = new CouchDocs($global_opts);
 
 $couchdocs->metavalidate($metafile);
-

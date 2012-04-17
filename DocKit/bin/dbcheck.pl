@@ -1,4 +1,4 @@
-#! /usr/bin/perl -w
+#!/usr/bin/env perl -w
 
 use strict;
 use warnings;
@@ -31,7 +31,7 @@ if (exists($global_opts->{checkulink}) && $global_opts->{checkulink} == 1)
 my $db_handler = CouchDocs::DBCheck->new($global_opts);
 my $src = $couchdocs->slurp_file($srcfile);
 
-XML::Parser::PerlSAX->new->parse(Source => { String => $src}, 
+XML::Parser::PerlSAX->new->parse(Source => { String => $src},
                                  Handler => $db_handler);
 
 foreach my $item (@{$db_handler->{issuelist}})

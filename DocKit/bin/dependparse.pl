@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use warnings;
 use strict;
@@ -126,7 +126,7 @@ sub dependloop
 
     my @filelist = ();
 
-    return(@filelist) unless (defined($couchdocs) && 
+    return(@filelist) unless (defined($couchdocs) &&
                    defined($basefile));
     return(@filelist) unless (exists($couchdocs->{dependencies}->{$basefile}));
 

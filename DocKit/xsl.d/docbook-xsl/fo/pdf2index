@@ -1,4 +1,4 @@
-#!/usr/bin/perl -- # -*- Perl -*-
+#!/usr/bin/env perl -- # -*- Perl -*-
 
 # this needs some cleanup...
 

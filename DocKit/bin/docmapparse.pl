@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use warnings;
 use strict;
@@ -22,4 +22,3 @@ croak("Must specify source files") unless(defined($srcfile));
 my $couchdocs = new CouchDocs($global_opts);
 
 $couchdocs->docmapparse($srcfile);
-

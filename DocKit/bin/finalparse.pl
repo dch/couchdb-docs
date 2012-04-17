@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use warnings;
 use strict;
@@ -24,4 +24,3 @@ my $couchdocs = new CouchDocs($global_opts);
 $couchdocs->{tool_dependencies}->{$destfile}->{$0} = 1;
 
 $couchdocs->finalparse($srcfile,$destfile);
-

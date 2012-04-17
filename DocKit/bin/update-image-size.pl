@@ -1,8 +1,8 @@
-#! /usr/bin/perl -w
+#!/usr/bin/env perl -w
 # vim:set ts=2 sw=2 expandtab:
 
 # update-image-size.pl
-# 
+#
 # Parses DocBook XML and finds and sets the content height/width on images
 
 # Martin MC Brown
@@ -34,7 +34,7 @@ foreach my $sourcefile (@ARGV)
     my $destfile = "$sourcefile.tmp";
     my $fileid = $sourcefile;
     $fileid =~ s/\.html$//g;
-    
+
     my $dirname = dirname($sourcefile);
 
     my $ifh = new IO::File("$sourcefile") or die "Error: Can't open source file $sourcefile ($!)\n";
@@ -56,7 +56,7 @@ foreach my $sourcefile (@ARGV)
     {
         my $newimg = $img;
         my ($fileref) = ($img =~ m/fileref="(.*?)"/);
-        
+
         my $image = image_info("$dirname/$fileref");
         if (!defined($image) or $image->{error})
         {
@@ -67,14 +67,14 @@ foreach my $sourcefile (@ARGV)
             my $imagewidth = $image->{width};
             my $imageheight = $image->{height};
             my $ratio = ($imagewidth/$imageheight);
-            
+
             $newimg =~ s/(contentdepth=".*?")|(contentwidth=".*?")|(width=".*?")|(depth=".*?")|(scalefit=".*?")|(  +)//g;
-            
+
             if ($newimg !~ m/(scalefit=".*?")/)
             {
                 $newimg =~ s/<imagedata/<imagedata scalefit="1" /;
             }
-            
+
             if ($newimg =~ m/(contentdepth=".*?")/)
             {
                 $newimg =~ s/contentdepth=".*?"/contentdepth="100%" /;
@@ -83,7 +83,7 @@ foreach my $sourcefile (@ARGV)
             {
                 $newimg =~ s/<imagedata/<imagedata contentdepth="100%" /;
             }
-            
+
             if ($newimg =~ m/(width=".*?")/)
             {
                 $newimg =~ s/width=".*?"/width="100%" /;
@@ -92,9 +92,9 @@ foreach my $sourcefile (@ARGV)
             {
                 $newimg =~ s/<imagedata/<imagedata width="100%" /;
             }
-            
+
             $newimg =~ s/(  +)/ /g;
-            
+
             my $repl = quotemeta($img);
             $text =~ s{$repl}{$newimg}msg;
         }
@@ -104,7 +104,7 @@ foreach my $sourcefile (@ARGV)
     {
         my $newimg = $img;
         next if ($img =~ m/logo.png/);
-        
+
         if ($newimg =~ m/(width=".*?")/)
         {
             $newimg =~ s/width=".*?"/width="100%"/;
@@ -113,7 +113,7 @@ foreach my $sourcefile (@ARGV)
         {
             $newimg =~ s/<img/<img width="100%" /;
         }
-        
+
         if ($newimg =~ m/(height=".*?")/)
         {
             $newimg =~ s/height=".*?"/height="100%" /;
@@ -122,9 +122,9 @@ foreach my $sourcefile (@ARGV)
         {
             $newimg =~ s/<img/<img height="100%" /;
         }
-        
+
         $newimg =~ s/(  +)/ /g;
-        
+
         my $repl = quotemeta($img);
         $text =~ s{$repl}{$newimg}msg;
     }
@@ -154,7 +154,7 @@ foreach my $sourcefile (@ARGV)
     $ofh->binmode(':utf8');
     print $ofh $text;
     $ofh->close();
-    
+
     unlink($sourcefile);
     rename($destfile,$sourcefile);
 }

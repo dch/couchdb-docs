@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use warnings;
 use strict;
@@ -11,15 +11,15 @@ my $cd = new CouchDocs();
 my $nv = {
 };
 
-my $iv = { 
+my $iv = {
    iv => '1.5',
    };
 
-my $ov = { 
+my $ov = {
    ov => '1.5',
    };
 
-my $ivov = { 
+my $ivov = {
    iv => '1.5',
    ov => '2.4',
    };
@@ -50,4 +50,3 @@ ok( $cd->meta_verify_version('1.4,1.9',$ivov) == 1, 'range 1.4,1.9');
 ok( $cd->meta_verify_version('1.5,1.9',$ivov) == 1, 'range 1.5,1.9');
 ok( $cd->meta_verify_version('1.1,2.5,1.1-1.4',$ivov) == 0, 'range 1.1,2.5,1.1-1.4 (false)');
 ok( $cd->meta_verify_version('1.1,2.5,1.4-3.0',$ivov) == 1, 'range 1.1,2.5,1.4-3.0');
-

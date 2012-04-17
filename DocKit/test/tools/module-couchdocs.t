@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use warnings;
 use strict;
@@ -8,15 +8,15 @@ use Test::Simple tests => 12;
 
 my $cd = new CouchDocs();
 
-my $versions = { 
+my $versions = {
     '1.1.0' => 1001001000000,
     '0.9.3' => 1000009003000,
     '1.1.23' => 1001001023000,
     '4.0.27a' => 1004000027097,
 };
-  
+
 foreach my $version (keys %{$versions})
-{                   
+{
     my $integer = $cd->vertodec($version);
     my $reverse = $cd->dectover($versions->{$version});
     my $full    = $cd->dectover($cd->vertodec($version));
@@ -26,7 +26,7 @@ foreach my $version (keys %{$versions})
     ok( $version eq $full, "vertodec(dectover) $version");
 }
 
-sub compare 
+sub compare
 {
     my ($a,$b) = @_;
 

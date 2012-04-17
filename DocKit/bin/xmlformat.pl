@@ -1,4 +1,4 @@
-#! /usr/bin/perl -w 
+#!/usr/bin/env perl -w
 # vim:set ts=2 sw=2 expandtab:
 
 # xmlformat - configurable XML file formatter/pretty-printer
@@ -711,7 +711,7 @@ my $str;
 # Parse XML document into array of tokens and store array
 
 sub shallow_parse
-{ 
+{
 my ($self, $xml_document) = @_;
 
   $self->{tokens} = [ $xml_document =~ /$XML_SPE/g ];
